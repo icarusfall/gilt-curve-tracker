@@ -28,7 +28,13 @@
       "Bash(curl -s \"https://gilt-curve-tracker-production.up.railway.app/api/curves/2026-03-17\")",
       "Bash(py -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\(''''dependencies'''',{}\\), indent=2\\)\\)\")",
       "Bash(npm uninstall:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(curl -s -o /dev/null -w \"%{content_type} %{http_code} %{size_download}\" \"https://gilt-curve-tracker-production.up.railway.app/assets/index-BmW6u88V.js\")",
+      "Bash(curl -s -I \"https://gilt-curve-tracker-production.up.railway.app/assets/index-BmW6u88V.js\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(where npx:*)",
+      "Bash(where npm:*)",
+      "Bash(py -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d.get\\(''''main'''',''''?''''\\), d.get\\(''''module'''',''''?''''\\), d.get\\(''''version'''',''''?''''\\)\\)\")"
     ]
   }
 }
