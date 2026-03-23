@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Plot from 'react-plotly.js';
+import Plot from '../lib/Plot';
 import { getCurveRange } from '../lib/api';
 import { OVERLAY_COLORS, PLOT_LAYOUT_DEFAULTS } from '../lib/constants';
 

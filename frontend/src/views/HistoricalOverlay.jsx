@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Plot from 'react-plotly.js';
+import Plot from '../lib/Plot';
 import { getLatestCurves, getPresets, compareCurves } from '../lib/api';
 import { CURVE_LABELS, OVERLAY_COLORS, PLOT_LAYOUT_DEFAULTS } from '../lib/constants';
 import CurveTypeToggle from '../components/CurveTypeToggle';
