@@ -1,4 +1,5 @@
 import logging
+import os
 from contextlib import asynccontextmanager
 from datetime import date, datetime, timedelta
 
@@ -35,8 +36,13 @@ def scheduled_fetch():
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    init_db()
-    logger.info("Database initialised")
+    logger.info(f"Starting up, DATABASE_URL configured: {'yes' if 'DATABASE_URL' in os.environ else 'no'}")
+    try:
+        init_db()
+        logger.info("Database initialised")
+    except Exception as e:
+        logger.error(f"Database init failed: {e}")
+        logger.error("App will start but DB queries will fail until connection is available")
 
     if BOE_FETCH_ENABLED:
         # Schedule daily fetch at 12:30 London time on weekdays
@@ -217,8 +223,6 @@ def trigger_backfill(days: int = Query(365, description="How many days back to b
 
 
 # Serve frontend static files (built React app) — must be last
-import os
-
 static_dir = os.path.join(os.path.dirname(__file__), "..", "static")
 if os.path.isdir(static_dir):
     app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")

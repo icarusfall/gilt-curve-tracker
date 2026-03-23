@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.bankofengland.co.uk)",
+      "WebSearch",
+      "WebFetch(domain:www.pythonsherpa.com)",
+      "WebFetch(domain:docs.rs)",
+      "WebFetch(domain:cran.r-universe.dev)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(curl -sL -o /tmp/boe_yc_latest.zip \"https://www.bankofengland.co.uk/statistics/yield-curves/traditional\")",
+      "Bash(echo \"Exit: $?\")",
+      "Bash(curl -sL -o /tmp/boe_latest.zip \"https://www.bankofengland.co.uk/-/media/boe/files/statistics/yield-curves/latest-yield-curve-data.zip\")",
+      "Read(//tmp/**)",
+      "Read(//c/tmp/**)",
+      "Bash(python3 -c \":*)",
+      "Bash(py --version)",
+      "Bash(py -c \":*)",
+      "Bash(py -m pip install openpyxl --quiet)"
+    ]
+  }
+}
