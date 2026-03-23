@@ -7,3 +7,4 @@ requests==2.32.3
 apscheduler==3.11.0
 python-dateutil==2.9.0.post0
 holidays==0.63
+pytz==2024.2
