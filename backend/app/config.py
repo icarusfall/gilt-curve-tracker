@@ -39,4 +39,5 @@ PRESET_EVENTS = [
     {"label": "Mini-budget peak", "type": "fixed", "date": "2022-09-27"},
     {"label": "Post-Brexit vote", "type": "fixed", "date": "2016-06-24"},
     {"label": "Pre-Trump tariffs", "type": "fixed", "date": "2025-04-01"},
+    {"label": "Pre-Iran invasion", "type": "fixed", "date": "2026-02-27"},
 ]
