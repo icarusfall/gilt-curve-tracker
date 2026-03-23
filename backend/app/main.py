@@ -211,15 +211,23 @@ def health_check():
 
 @app.post("/api/admin/fetch-latest")
 def trigger_fetch_latest():
-    count = fetch_latest()
-    return {"status": "ok", "records_upserted": count}
+    try:
+        count = fetch_latest()
+        return {"status": "ok", "records_upserted": count}
+    except Exception as e:
+        logger.exception("fetch-latest failed")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.post("/api/admin/backfill")
 def trigger_backfill(days: int = Query(365, description="How many days back to backfill")):
-    min_date = date.today() - timedelta(days=days)
-    count = backfill(min_date=min_date)
-    return {"status": "ok", "records_upserted": count, "from_date": min_date.isoformat()}
+    try:
+        min_date = date.today() - timedelta(days=days)
+        count = backfill(min_date=min_date)
+        return {"status": "ok", "records_upserted": count, "from_date": min_date.isoformat()}
+    except Exception as e:
+        logger.exception("backfill failed")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 # Serve frontend static files (built React app) — must be last

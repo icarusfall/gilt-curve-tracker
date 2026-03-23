@@ -16,7 +16,11 @@
       "Bash(python3 -c \":*)",
       "Bash(py --version)",
       "Bash(py -c \":*)",
-      "Bash(py -m pip install openpyxl --quiet)"
+      "Bash(py -m pip install openpyxl --quiet)",
+      "Bash(curl -X POST \"https://gilt-curve-tracker-production.up.railway.app/api/admin/backfill?days=365\")",
+      "Bash(curl -s \"https://gilt-curve-tracker-production.up.railway.app/api/health\")",
+      "Bash(py -m json.tool)",
+      "Bash(curl -s -X POST \"https://gilt-curve-tracker-production.up.railway.app/api/admin/fetch-latest\")"
     ]
   }
 }
