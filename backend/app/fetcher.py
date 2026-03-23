@@ -28,10 +28,15 @@ from app.db import log_fetch, upsert_curve_data
 
 logger = logging.getLogger(__name__)
 
+REQUEST_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (compatible; GiltCurveTracker/1.0; academic research)",
+    "Accept": "application/zip, application/octet-stream, */*",
+}
+
 
 def download_zip(url: str) -> zipfile.ZipFile:
     logger.info(f"Downloading {url}")
-    resp = requests.get(url, timeout=120)
+    resp = requests.get(url, headers=REQUEST_HEADERS, timeout=120)
     resp.raise_for_status()
     return zipfile.ZipFile(io.BytesIO(resp.content))
 
