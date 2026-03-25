@@ -45,14 +45,20 @@ async def lifespan(app: FastAPI):
         logger.error("App will start but DB queries will fail until connection is available")
 
     if BOE_FETCH_ENABLED:
-        # Schedule daily fetch at 12:30 London time on weekdays
+        # BoE publishes yield curves around 16:00-17:00 London time
+        # Primary fetch at 17:30, fallback at 18:30 in case of late publication
         scheduler.add_job(
             scheduled_fetch,
-            CronTrigger(day_of_week="mon-fri", hour=12, minute=30, timezone="Europe/London"),
+            CronTrigger(day_of_week="mon-fri", hour=17, minute=30, timezone="Europe/London"),
             id="daily_fetch",
         )
+        scheduler.add_job(
+            scheduled_fetch,
+            CronTrigger(day_of_week="mon-fri", hour=18, minute=30, timezone="Europe/London"),
+            id="daily_fetch_fallback",
+        )
         scheduler.start()
-        logger.info("Scheduler started — daily fetch at 12:30 London time")
+        logger.info("Scheduler started — daily fetch at 17:30 + 18:30 London time")
 
     yield
 
